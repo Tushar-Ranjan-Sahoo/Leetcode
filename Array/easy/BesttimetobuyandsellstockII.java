@@ -1,2 +1,10 @@
-package PACKAGE_NAME;public class BesttimetobuyandsellstockII {
+public class BesttimetobuyandsellstockII {
+    public int maxProfit(int[] prices) {
+        int maxprofit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] > prices[i - 1])
+                maxprofit += prices[i] - prices[i - 1];
+        }
+        return maxprofit;
+    }
 }
