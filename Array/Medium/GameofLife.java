@@ -34,4 +34,52 @@
 //        1 <= m, n <= 25
 //        board[i][j] is 0 or 1.
 public class GameofLife {
+    public void gameOfLife(int[][] board) {
+        int m = board.length;
+        int n = board[0].length;
+        int[][] nextBoard = new int[m][n];
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int liveNeighbors = countLiveNeighbors(board, i, j);
+
+                if (board[i][j] == 1) {
+                    if (liveNeighbors < 2 || liveNeighbors > 3) {
+                        nextBoard[i][j] = 0;
+                    } else {
+                        nextBoard[i][j] = 1;
+                    }
+                } else {
+                    if (liveNeighbors == 3) {
+                        nextBoard[i][j] = 1;
+                    } else {
+                        nextBoard[i][j] = 0;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = nextBoard[i][j];
+            }
+        }
+    }
+
+    private int countLiveNeighbors(int[][] board, int row, int col) {
+        int count = 0;
+        int m = board.length;
+        int n = board[0].length;
+
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (i >= 0 && i < m && j >= 0 && j < n && !(i == row && j == col)) {
+                    count += board[i][j];
+                }
+            }
+        }
+
+        return count;
+    }
+
 }
