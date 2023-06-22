@@ -1,0 +1,2 @@
+public class PairsofsongsWithTotalDurationsDivisibleby60 {
+}
